@@ -11,7 +11,7 @@ This Python application calculates the SHA-256 hash of a given file and queries 
 
 ## Installation
 
-1. Install the required library:**
+1. Install the required library:
 
    Install the `requests` library by running:
    ```sh
