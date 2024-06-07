@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
+
 import hashlib
-import sys
+import argparse
 
 
 def calculate_file_hash(file):
@@ -16,10 +18,8 @@ def calculate_file_hash(file):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("python script.py <file_path>")
-    else:
-        file_path = sys.argv[1]
-        file_hash = calculate_file_hash(file_path)
-        print(f"File: {file_path}")
-        print(f"SHA-256 Hash: {file_hash}")
+    parser = argparse.ArgumentParser(description="Calculate the hash of a file.")
+    parser.add_argument("--file", help="The file to calculate the hash of.")
+    args = parser.parse_args()
+    file_path = args.file
+    print(calculate_file_hash(file_path))
