@@ -9,20 +9,20 @@ This Python application calculates the SHA-256 hash of a given file and queries 
 
 ## Installation
 
-1. **Install the required library:**
+1. Install the required library:**
 
    Install the `requests` library by running:
    ```sh
    pip install requests
-2. **Make the script executable
+2. Make the script executable
 
    chmod +x hash_calculator.py
    
-3. **Move the script to /usr/local/bin for global access
+3. Move the script to /usr/local/bin for global access
 
    sudo mv hash_calculator.py /usr/local/bin/hashcalculator
 
-4. **Make the script executable in /usr/local/bin
+4. Make the script executable in /usr/local/bin
 
    sudo chmod +x /usr/local/bin/hashcalculator
 
