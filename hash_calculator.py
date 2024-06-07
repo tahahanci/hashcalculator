@@ -34,7 +34,7 @@ def check_virustotal(hash_value, api_key):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Calculate the hash of a file.")
     parser.add_argument("--file", help="The file to calculate the hash of.")
-    parser.add_argument("--apikey", help="The VirusTotal API key.")
+    parser.add_argument("--api-key", help="The VirusTotal API key.")
     args = parser.parse_args()
 
     file_path = args.file
