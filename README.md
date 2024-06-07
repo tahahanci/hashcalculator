@@ -6,6 +6,8 @@ This Python application calculates the SHA-256 hash of a given file and queries 
 
 - Python 3.x
 - `requests` library
+- `hashlib` library
+- `argparse` library
 
 ## Installation
 
