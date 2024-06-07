@@ -17,15 +17,17 @@ This Python application calculates the SHA-256 hash of a given file and queries 
    ```sh
    pip install requests
 2. Make the script executable
-
+   ```sh
    chmod +x hash_calculator.py
    
-3. Move the script to /usr/local/bin for global access
+4. Move the script to /usr/local/bin for global access
 
+   ```sh
    sudo mv hash_calculator.py /usr/local/bin/hashcalculator
 
-4. Make the script executable in /usr/local/bin
+6. Make the script executable in /usr/local/bin
 
+   ```sh
    sudo chmod +x /usr/local/bin/hashcalculator
 
 ## Usage
