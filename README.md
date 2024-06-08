@@ -44,5 +44,5 @@ hashcalculator --file <file_path> --api-key <virustotal_api_key>
 
 ## Example
 
-hashcalculator --file /home/user/example.txt --apikey your_virus_total_token
-hashcalculator --ip 8.8.8.8 --ipinfo-token your_ipinfo_token
+* hashcalculator --file /home/user/example.txt --apikey your_virus_total_token
+* hashcalculator --ip 8.8.8.8 --ipinfo-token your_ipinfo_token
