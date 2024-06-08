@@ -3,6 +3,7 @@
 import hashlib
 import argparse
 import requests
+import json
 
 
 def calculate_file_hash(file):
@@ -44,6 +45,10 @@ def get_ip_info(ip_address, token):
         return f"An error occurred: {response.text}"
 
 
+def print_json_pretty(json_data):
+    print(json.dumps(json_data, indent=4, sort_keys=True))
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="File hash calculator, VirusTotal checker, and IP info fetcher")
     parser.add_argument('--file', type=str, help="Path to the file to calculate the hash")
@@ -63,13 +68,13 @@ if __name__ == "__main__":
         if "File not found!" not in file_hash and "An error occurred:" not in file_hash:
             vt_result = check_virustotal(file_hash, api_key)
             print("VirusTotal Results:")
-            print(vt_result)
+            print_json_pretty(vt_result)
         else:
             print(file_hash)
     elif args.ip and args.ipinfo_token:
         ip_info = get_ip_info(args.ip, args.ipinfo_token)
         print(f"IP Info for {args.ip}:")
-        print(ip_info)
+        print_json_pretty(ip_info)
     else:
         print("Please provide either --file and --apikey for hash calculation "
               "and VirusTotal check, or --ip and --ipinfo-token for IP info.")
