@@ -31,20 +31,45 @@ def check_virustotal(hash_value, api_key):
         return f"An error occurred: {response.text}"
 
 
+def get_ip_info(ip_address, token):
+    url = f"https://ipinfo.io/{ip_address}/json"
+    headers = {
+        "Authorization": f"Bearer {token}"
+    }
+
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return f"An error occurred: {response.text}"
+
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Calculate the hash of a file.")
-    parser.add_argument("--file", help="The file to calculate the hash of.")
-    parser.add_argument("--api-key", help="The VirusTotal API key.")
+    parser = argparse.ArgumentParser(description="File hash calculator, VirusTotal checker, and IP info fetcher")
+    parser.add_argument('--file', type=str, help="Path to the file to calculate the hash")
+    parser.add_argument('--apikey', type=str, help="VirusTotal API key")
+    parser.add_argument('--ip', type=str, help="IP address to fetch information")
+    parser.add_argument('--ipinfo-token', type=str, help="Token for ipinfo.io API")
     args = parser.parse_args()
 
-    file_path = args.file
-    api_key = args.api_key
-    file_hash = calculate_file_hash(file_path)
+    if args.file and args.apikey:
+        file_path = args.file
+        api_key = args.apikey
+        file_hash = calculate_file_hash(file_path)
 
-    print(f"Hash of the file: {file_hash}")
+        print(f"File: {file_path}")
+        print(f"SHA-256 Hash: {file_hash}")
 
-    if "File cannot found!" not in file_hash and "An error occurred" not in file_hash:
-        response = check_virustotal(file_hash, api_key)
-        print(response)
+        if "File not found!" not in file_hash and "An error occurred:" not in file_hash:
+            vt_result = check_virustotal(file_hash, api_key)
+            print("VirusTotal Results:")
+            print(vt_result)
+        else:
+            print(file_hash)
+    elif args.ip and args.ipinfo_token:
+        ip_info = get_ip_info(args.ip, args.ipinfo_token)
+        print(f"IP Info for {args.ip}:")
+        print(ip_info)
     else:
-        print(file_hash)
+        print("Please provide either --file and --apikey for hash calculation "
+              "and VirusTotal check, or --ip and --ipinfo-token for IP info.")
