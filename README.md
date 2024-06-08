@@ -32,12 +32,12 @@ This Python application calculates the SHA-256 hash of a given file, queries thi
 
 ## Usage
 
-hashcalculator --file <file_path> --api-key <virustotal_api_key>
+hashcalculator --file <file_path> --apikey <virustotal_api_key>
 
 ## Command Line Arguments
 
 * --file: Path to the file to calculate the hash.
-* --api-key: VirusTotal API key.
+* --apikey: VirusTotal API key.
 * --ip: IP address.
 * --ipinfo-token: IP info token.
 
