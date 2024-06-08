@@ -1,6 +1,8 @@
-# Hash Calculator, VirusTotal Checker and IP Info Fetcher
+# Hash Calculator, VirusTotal Checker, IP Info Fetcher, and URL Resolver
 
-This Python application calculates the SHA-256 hash of a given file, queries this hash on the VirusTotal API to check if the file is malicious, and fetches information about a given IP address from the ipinfo.io service.
+This Python application calculates the SHA-256 hash of a given file, queries this hash on the VirusTotal 
+API to check if the file is malicious, fetches information about a given IP address from the ipinfo.io service, 
+and resolves short URLs to their final destinations.
 
 ## Requirements
 

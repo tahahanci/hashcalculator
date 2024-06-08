@@ -49,12 +49,21 @@ def print_json_pretty(json_data):
     print(json.dumps(json_data, indent=4, sort_keys=True))
 
 
+def resolve_short_url(short_url):
+    try:
+        response = requests.head(short_url, allow_redirects=True)
+        return response.url
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="File hash calculator, VirusTotal checker, and IP info fetcher")
     parser.add_argument('--file', type=str, help="Path to the file to calculate the hash")
     parser.add_argument('--apikey', type=str, help="VirusTotal API key")
     parser.add_argument('--ip', type=str, help="IP address to fetch information")
     parser.add_argument('--ipinfo-token', type=str, help="Token for ipinfo.io API")
+    parser.add_argument('--url', type=str, help='Short URL to resolve to the final URL')
     args = parser.parse_args()
 
     if args.file and args.apikey:
@@ -75,6 +84,13 @@ if __name__ == "__main__":
         ip_info = get_ip_info(args.ip, args.ipinfo_token)
         print(f"IP Info for {args.ip}:")
         print_json_pretty(ip_info)
+    elif args.url:
+        final_url = resolve_short_url(args.url)
+        print(f"Final URL: {final_url}")
+        if final_url:
+            print(f"Short URL {args.url} redirects to: {final_url}")
+        else:
+            print(f"Failed to resolve the short URL: {args.url}")
     else:
         print("Please provide either --file and --apikey for hash calculation "
               "and VirusTotal check, or --ip and --ipinfo-token for IP info.")
