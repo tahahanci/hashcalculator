@@ -58,7 +58,7 @@ def resolve_short_url(short_url):
 
 
 def query_urlscan(url, urlscan_api_key):
-    url = "https://urlscan.io/api/v1/scan/"
+    api_url = "https://urlscan.io/api/v1/scan/"
     headers = {
         "API-Key": urlscan_api_key,
         "Content-Type": "application/json",
@@ -68,7 +68,7 @@ def query_urlscan(url, urlscan_api_key):
         "visibility": "public"
     }
     try:
-        response = requests.post(url, headers=headers, json=data)
+        response = requests.post(api_url, headers=headers, json=data)
         if response.status_code == 200:
             return response.json()
         else:
